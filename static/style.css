@@ -1,0 +1,39 @@
+
+body {
+    width: 100vw;
+}
+ul {
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 0;
+    padding: 8px 0;
+    color: #333;
+}
+
+li:hover {
+    background-color: #eee;
+    cursor: pointer;
+}
+
+input {
+    padding: 0.5rem;
+    color: #999;
+    border: 1px solid;
+    border-radius: 20px;
+}
+button {
+    padding: 0.5rem;
+    color: white;
+    background-color: blue;
+    border: 1px solid;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 500ms ease-in-out;
+}
+button:hover {
+    transform: scale(1.05);
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static\style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        {%if user_name %}
+            Hello, {{user_name}} <a href="/logout">Logout</a>
+        {%else%}
+            Welcome! <a href="/login">Login</a>
+        {%endif%}
+    </h3>
+    <form action="/searchData" method="post">
+        <input type="text" name="searchInput" placeholder="Enter your search term">
+        <button type="submit">Search</button>
+    </form>    
+    <h1>View Cart</h1>
+    <form action="/viewcart" method="post">
+        <button type="submit">View Cart</button>
+    </form>
+    <p>
+        {%if search_text%}
+        You searched for: {{search_text}}
+        <table class="cart">
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Price</th>
+                <th>Add to cart</th>
+            </tr>
+            {%for product in products%}
+            <tr>
+                <td>{{product[0]}}</td>
+                <td>{{product[1]}}</td>
+                <td>{{product[2]}}</td>
+                <td>{{product[4]}}</td>
+                <td>{{product[6]}}</td>
+                <td>
+                    <form action="/cart/add" method="post">
+                        <input type="hidden" name="product_id" value="{{product[0]}}">
+                        <input type="number" name="quantity" value="1" min="1">
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </td>
+            </tr>
+            {%endfor%}
+        </table>    
+        {%endif%}
+    </p>
+</body>
+</html>
+    

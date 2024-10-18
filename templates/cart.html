@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        {%if user_name%}
+            Hello, {{user_name}} <a href="/logout">Logout</a>
+        {%else%}
+            You are not logged in. Please  <a href="/login">Login</a>
+        {%endif%}
+    </h3>
+    <h1>Your shopping cart</h1>
+    <form action="{{url_for('update_cart')}}" method="post">
+        <table class="cart">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Update Quantity</th>
+                <th>Delete</th>
+            </tr>
+            {%for product in carts%}
+            <tr>
+                <td>{{product['id']}}</td>
+                <td>{{product['name']}}</td>
+                <td>{{product['price']}}</td>
+                <td>{{product['quantity']}}</td>
+                <td><input type="number" name="quantity-{{product['id']}}" min="0" value="{{product['quantity']}}"></td>
+                <td><input type="checkbox" name="delete-{{product['id']}}"></td>
+            </tr>
+            {%endfor%}
+        </table>
+        <input type="submit" value="Update Cart">
+    </form>
+    <h1>Create Order</h1>
+    <form action="{{url_for('proceed_cart')}}" method="post">
+        <input type="submit" value="Proceed Cart">
+    </form>
+</body>
+</html>
